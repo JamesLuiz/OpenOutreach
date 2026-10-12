@@ -40,6 +40,15 @@ def test_send_reaches_the_sender_with_its_own_arguments(monkeypatch):
     assert passed == [["send", "5", "--prompt-line", "opener"]]
 
 
+def test_send_passes_a_sequence_through_untouched(monkeypatch):
+    """`--sequence DIR` is the sender's; no setting of this host stands in for it."""
+    passed = []
+    monkeypatch.setattr("openoutsend.__main__.main", lambda argv: passed.append(argv) or 0)
+
+    assert cli._send(["--sequence", "sequences/sample-to-order"]) == 0
+    assert passed == [["send", "--sequence", "sequences/sample-to-order"]]
+
+
 def test_runs_goal_defaults_to_something_small():
     assert cli._goal([]) == cli.DEFAULT_GOAL
     assert cli._goal(["12"]) == 12
