@@ -283,27 +283,30 @@ Three things to know if you do run one:
 Everything the sender knows about a lead comes from the finder's JSON record, so the outreach
 agent's opener is written from `profile_text`, not from `reason`.
 
-### Writing the opener yourself, with no second LLM key
+### Writing the openers and steps yourself, with no second LLM key
 
 The sending half has the same opt-out `--agent-qualify` does, one step later: `--agent-draft` stops
-`send` at the first deal needing an opener instead of spending `OUTSEND_LLM_API_KEY`, and drops that
-key out of what `send` requires entirely:
+`send` at the deal whose opener or next sequence step has been due longest instead of spending
+`OUTSEND_LLM_API_KEY`, and drops that key out of what `send` requires entirely (follow-ups still use
+it, so set `OUTSEND_FOLLOW_UPS=off` when no model is configured):
 
 ```bash
 openoutreach send --agent-draft
 ```
 
-It exits non-zero with `draft_pending`, carrying the deal's `profile_text`/`company`/`title` (on the
-error object under `--json`, or the plain-text line without it). Write the opener yourself, then
-re-run with the answer:
+It exits non-zero with `draft_pending`. Under `--json` the error object carries the deal's
+`profile_text`/`company`/`title`, the step's file as `step`, its rendered step file as `prompt` and,
+for a later step, the thread's `subject`. Write what the prompt asks, then re-run with the answer: a
+subject and body for an opener, a body alone for a later step, which goes in the opener's thread:
 
 ```bash
 openoutreach send --agent-draft --subject "Quick one" --body "Saw you're hiring for platform roles..."
+openoutreach send --agent-draft --body "One more thought on the list..."
 ```
 
 This resumes the same deal and sends it once a mailbox is free — an answer given while every box is
 busy is kept, not thrown away, so a later bare `openoutreach send --agent-draft` picks it back up
-without repeating the text. No count yet: it is one pass at a time. **Still never run this unasked**
+without repeating the text. A deal stopped or replied to meanwhile is dropped, not written to. No count yet: it is one pass at a time. **Still never run this unasked**
 — it is `send`, and everything in *The verbs that send mail* above about consent applies unchanged.
 
 ## Things not to do
