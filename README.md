@@ -5,6 +5,8 @@
 > **Describe your product. Define your target market. The AI finds the people who fit, tells you why each one does, and emails them.**
 >
 > Self-hosted CLI. One install, one onboarding, one command.
+>
+> Rather not run it yourself? [Get ten leads free at openoutreach.app](https://openoutreach.app/?utm_source=github&utm_medium=readme&utm_campaign=openoutreach-top), each with the reason it fits.
 
 <div align="center">
 
