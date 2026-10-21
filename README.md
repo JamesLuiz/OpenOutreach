@@ -41,6 +41,11 @@ Two things make that different from what you may have used before:
 It has **zero platform-ToS surface**: browserless, no social-network account, no scraping. There is
 no account to get banned, because there is no account.
 
+> **Rather not run it yourself?** I run it for you. Tell me what you sell and who buys it at
+> **[openoutreach.app](https://openoutreach.app/?utm_source=github&utm_medium=readme&utm_campaign=openoutreach)**
+> and I send back ten LinkedIn profiles that fit, each with the reason written out, free. After
+> that it's $2 a lead. Nothing to install, no keys, no account.
+
 ---
 
 ## ⚡ Quick Start
@@ -177,6 +182,9 @@ arrives as a custom variable you can merge into a template.
 | 2 | **An email-finder API key** ([BetterContact](https://bettercontact.rocks?fpr=openoutreach)) | **Free account: 40 credits, no card.** Powers **both** discovery (Lead Finder, billed nothing) and enrichment (one credit per verified work email) |
 | 3 | **A product description + target market** | "We sell cloud cost optimization for DevOps teams at mid-market SaaS companies" |
 | 4 | **A mailbox to send from** | Its address and an **app password** — not your login password. Google Workspace works out of the box; any other provider names its SMTP/IMAP host and port |
+
+No keys yet? [Ask for ten leads at openoutreach.app](https://openoutreach.app/?utm_source=github&utm_medium=readme&utm_campaign=openoutreach-needs)
+and I'll find them for you, free.
 
 Onboarding asks for all four in one pass and **asks only once** — the answers are kept in
 `~/.openoutreach`, and every later run exports them into the variables the children read. A question
